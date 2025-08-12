@@ -1,85 +1,38 @@
-# Markdown Extension Examples
+# WebPack基础
 
-This page demonstrates some of the built-in markdown extensions provided by VitePress.
+## webpack 的核心概念都有哪些？
+loader 加载器，主要用于代码转换，将图片,css和js等资源转换成浏览器能识别的代码<br>
+plugin 插件，webpack 打包流程中每个环节都提供了钩子函数，可以利用这些钩子函数参与到打包生命周期中，更改或增加 webpack 的某些功能，比如生成页面和 css 文件、压缩打包结果等<br>
+module 模块。webpack 将所有依赖均视为模块，无论是 js、css、html、图片，统统都是模块<br>
+entry 入口。打包过程中的概念，webpack 以一个或多个文件作为入口点，分析整个依赖关系。<br>
+chunk 打包过程中的概念，一个 chunk 是一个相对独立的打包过程，以一个或多个文件为入口，分析整个依赖关系，最终完成打包合并<br>
+bundle webpack 打包结果<br>
+tree shaking 树摇优化。在打包结果中，去掉没有用到的代码。<br>
+HMR 热更新。是指在运行期间，遇到代码更改后，无须重启整个项目，只更新变动的那一部分代码。<br>
+dev server 开发服务器。在开发环境中搭建的临时服务器，用于承载对打包结果的访问<br>
 
-## Syntax Highlighting
+## webpack 中的几种 hash 的实现原理是什么？
+hash hash 是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的 hash 值都会更改，并且全部文件都共用相同的 hash 值<br> 
+chunkhash 每个打包过程单独的 hash 值，如果一个项目有多个 entry，则每个 entry 维护自己的 chunkhash。<br>
+contenthash 每个文件内容单独的 hash 值，它和打包结果文件内容有关，只要文件内容不变，contenthash 不变。<br>
 
-VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
+## webpack 中是如何处理图片的？
+webpack 本身不处理图片，如果打包,它会把图片内容仍然当做 JS 代码来解析，结果就是报错，打包失败。<br>
+如果要处理图片，需要通过 loader 来处理。其中，url-loader 会把图片转换为 base64 编码，然后得到一个 dataurl，file-loader 则会将图片生成到打包目录中，然后得到一个资源路径。<br>
+无论是哪一种 loader，它们的核心功能，都是把图片内容转换成 JS 代码，因为只有转换成 JS 代码，webpack 才能识别。
 
-**Input**
+## webpack 打包过程？
+1. 初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数<br>
+2. 开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译<br>
+3. 确定入口：根据配置中的 entry 找出所有的入口文件<br>
+4. 编译模块：从入口文件出发，调用所有配置的 loader 对模块进行翻译，再把翻译后的内容转换成 AST，通过对 AST 的分析找出该模块依赖的模块，再 递归 本步骤直到所有入口依赖的文件都经过了本步骤的处理<br>
+5. 完成模块编译：在经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的 依赖关系图<br>
+6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表<br>
 
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-````
+## webpack 热更新过程？
+当开启热更新后，页面中会植入一段 websocket 脚本，同时，开发服务器也会和客户端建立 websocket 通信，当源码发生变动时， 进行以下处理：
 
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-
-## Custom Containers
-
-**Input**
-
-```md
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-```
-
-**Output**
-
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-
-## More
-
-Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
+1. 源码变动 → webpack-dev-server（运行在服务端） 检测到文件变化；<br>
+2. 服务端重新编译（增量）；<br>
+3. 服务端通过 WebSocket 主动把「更新清单（hash 和要更新的模块 ID）」推送给浏览器；<br>
+4. 浏览器按清单发 AJAX 请求把新模块拉下来，并应用热替换逻辑。<br>
