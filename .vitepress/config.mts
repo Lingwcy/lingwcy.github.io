@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
-
+const base = "/"; 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base,
   title: "lingwcy",
   description: "A VitePress Site",
   themeConfig: {
