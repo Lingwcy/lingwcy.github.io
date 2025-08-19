@@ -15,10 +15,21 @@ export default defineConfig({
         ]
       },
       { text: 'Vite', link: '/markdown-examples' },
-      { text: 'JavaSrcipt', link: '/markdown-examples' },
+      { text: 'JavaSrcipt', items:[
+        {text:"网络", link:'/docs/js/网络.md'}
+      ] },
       { text: 'TypeScript', link: '/markdown-examples' },
       { text: 'Vue', link: '/markdown-examples' },
-      { text: 'React', link: '/markdown-examples' },
+      { text: 'React',
+        items: [
+          { text: 'jsx', link: '/docs/react/JSX.md'},
+          { text: 'hooks', items: [
+            { text: 'useState', link: '/docs/react/useState.md' },
+            { text: 'useEffect', link: '/docs/react/useEffect.md' },
+          ] },
+          { text: '进阶', link: '/item-2' },
+        ]
+       },
       { text: 'Next.js', link: '/markdown-examples' },
       { text: '题库', link: '/markdown-examples' },
     ],
