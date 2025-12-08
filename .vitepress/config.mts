@@ -14,7 +14,9 @@ export default defineConfig({
           { text: '高级优化', link: '/item-2' },
         ]
       },
-      { text: 'Vite', link: '/markdown-examples' },
+      { text: 'Vite', items: [
+        { text: '面经', link: '/docs/vite/面经.md' },
+      ] },
       { text: 'JavaSrcipt', items:[
         {text:"高级", link:'/docs/js/高级概念.md'},
         {text:"网络", link:'/docs/js/网络.md'}
@@ -25,6 +27,7 @@ export default defineConfig({
       { text: 'Vue', link: '/markdown-examples' },
       { text: 'React',
         items: [
+          { text: '面经', link: '/docs/react/面试.md'},
           { text: 'jsx', link: '/docs/react/JSX.md'},
           { text: 'hooks', items: [
             { text: 'useState', link: '/docs/react/useState.md' },
