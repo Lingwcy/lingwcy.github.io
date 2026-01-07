@@ -19,6 +19,13 @@ export default defineConfig({
       ] },
       { text: 'JavaSrcipt', items:[
         {text:"高级", link:'/docs/js/高级概念.md'},
+        {text:"原型链", link:'/docs/js/原型链.md'},
+        {text:"闭包", link:'/docs/js/闭包.md'},
+        {text:"this指向", link:'/docs/js/this指向.md'},
+        {text:"事件循环", link:'/docs/js/事件循环.md'},
+        {text:"浏览器工作", link:'/docs/js/浏览器工作.md'},
+        {text:"数组", link:'/docs/js/数组.md'},
+        {text:"类数组对象", link:'/docs/js/类数组对象.md'},
         {text:"网络", link:'/docs/js/网络.md'}
       ] },
       { text: 'TypeScript', items:[
