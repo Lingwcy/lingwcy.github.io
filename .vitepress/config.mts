@@ -22,10 +22,10 @@ export default defineConfig({
         {text:"原型链", link:'/docs/js/原型链.md'},
         {text:"闭包", link:'/docs/js/闭包.md'},
         {text:"this指向", link:'/docs/js/this指向.md'},
-        {text:"事件循环", link:'/docs/js/事件循环.md'},
         {text:"浏览器工作", link:'/docs/js/浏览器工作.md'},
         {text:"数组", link:'/docs/js/数组.md'},
         {text:"类数组对象", link:'/docs/js/类数组对象.md'},
+        {text:"属性访达性", link:'/docs/js/属性访达性.md'},
         {text:"网络", link:'/docs/js/网络.md'}
       ] },
       { text: 'TypeScript', items:[
@@ -42,10 +42,21 @@ export default defineConfig({
           ] },
           { text: 'Fiber', link: '/docs/react/high/Fiber.md' },
           { text: '虚拟Dom', link: '/docs/react/high/虚拟dom.md' },
+
+          { text: 'React Router', items: [
+            { text: 'React', link: '/docs/react/useState.md' },
+          ] },
         ]
        },
-      { text: 'Next.js', link: '/markdown-examples' },
-      { text: '题库', link: '/markdown-examples' },
+      { text: '浏览器', items:[
+        {text: '浏览器缓存机制', link: '/docs/浏览器/浏览器缓存机制.md'},
+        {text:"事件循环", link:'/docs/浏览器/事件循环.md'},
+        {text:"浏览器工作原理", link:'/docs/浏览器/浏览器工作.md'},
+        
+      ] },
+      { text: '题库', items:[
+        {text: '诗悦网络笔试2026', link:'/docs/题库/诗悦网络笔试2026.md'}
+      ] },
     ],
 
     socialLinks: [
