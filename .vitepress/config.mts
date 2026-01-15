@@ -54,6 +54,10 @@ export default defineConfig({
         {text:"浏览器工作原理", link:'/docs/浏览器/浏览器工作.md'},
         
       ] },
+
+      { text: 'Web网络', items:[
+        {text: 'HTTP协议', link: '/docs/web网络/http.md'},
+      ] },
       { text: '题库', items:[
         {text: '诗悦网络笔试2026', link:'/docs/题库/诗悦网络笔试2026.md'}
       ] },
