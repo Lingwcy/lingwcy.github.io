@@ -28,4 +28,3 @@ PATCH：用于对资源进行部分更新，每次执行可能会带来不同的
 2. **HEAD:** 请求资源的标头信息，并且这些标头与 HTTP GET 方法请求时返回的一致。该请求方法的一个使用场景是在下载一个大文件前先通过 HEAD 请求读取其 Content-Length 标头的值获取文件的大小，而无需实际下载文件，以此可以节约带宽资源。
 3. **OPTIONS:** 请求通常用于查询服务器上某个 URL 或者整个服务器允许哪些 HTTP 方法；在跨域请求时，浏览器通常会先发起一个 OPTIONS 请求，称为 预检请求，来检查服务器是否允许当前跨域请求。
 4. **POST:** 发送数据给服务器。请求主体的类型由 `Content-Type` 标头指定。PUT 和 POST 方法的区别是，PUT 方法是**幂等的**，PUT 调用一次与连续调用多次效果是相同的，没有副作用。
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Methods/PUT
